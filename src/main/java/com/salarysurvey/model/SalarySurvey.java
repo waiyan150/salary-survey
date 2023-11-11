@@ -6,6 +6,7 @@ import jakarta.persistence.Table;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "salary_survey")
-public class SalarySurvey {
+public class SalarySurvey extends RepresentationModel<SalarySurvey> {
     @Id
     private Integer id;
     private LocalDateTime timestamp;
