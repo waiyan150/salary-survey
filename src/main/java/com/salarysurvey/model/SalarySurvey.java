@@ -1,5 +1,6 @@
 package com.salarysurvey.model;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -8,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,7 +17,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "salary_survey")
-public class SalarySurvey extends RepresentationModel<SalarySurvey> {
+@JsonFilter("SalarySurvey")
+public class SalarySurvey extends RepresentationModel<SalarySurvey> implements Serializable {
     @Id
     private Integer id;
     private LocalDateTime timestamp;
