@@ -59,4 +59,9 @@ public class SalarySurveyController {
         mappingJacksonValue.setFilters(filters);
         return mappingJacksonValue;
     }
+
+    /*@PutMapping("/{id}")
+    public SalarySurvey update(@PathVariable Integer id, @RequestBody SalarySurvey request){
+        return service.update(id, request);
+    }*/
 }

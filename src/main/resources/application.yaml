@@ -14,6 +14,8 @@ server:
     context-path: /salary-survey
 
 spring:
+  logging:
+    level: info
   jpa:
     hibernate:
       ddl-auto: none
