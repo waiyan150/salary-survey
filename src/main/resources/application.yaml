@@ -24,3 +24,7 @@ spring:
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  level:
+    org.springframework.web.filter.CommonsRequestLoggingFilter: debug

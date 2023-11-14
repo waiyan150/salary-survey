@@ -26,7 +26,6 @@ public class SalarySurveyService {
     }
 
     public Page<SalarySurvey> findAllWithFilter(final Specification<SalarySurvey> spec, final Pageable pageable) {
-        LOGGER.info("find surveys, {}", pageable);
         return repository.findAll(spec, pageable);
     }
 
