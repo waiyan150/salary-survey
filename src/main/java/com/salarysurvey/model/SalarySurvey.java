@@ -3,6 +3,7 @@ package com.salarysurvey.model;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.PropertyType;
+import com.querydsl.core.annotations.QueryEntity;
 import com.querydsl.core.annotations.QueryType;
 import jakarta.persistence.*;
 import lombok.Generated;
@@ -20,6 +21,7 @@ import java.time.LocalDateTime;
 @Setter
 @Table(name = "salary_survey")
 @JsonFilter("SalarySurvey")
+@QueryEntity
 public class SalarySurvey extends RepresentationModel<SalarySurvey> implements Serializable {
     @Id
     @JsonFormat
@@ -48,13 +50,13 @@ public class SalarySurvey extends RepresentationModel<SalarySurvey> implements S
     private BigDecimal salary;
 
     @JsonFormat
-    private String signingBonus;
+    private BigDecimal signingBonus;
 
     @JsonFormat
-    private String annualBonus;
+    private BigDecimal annualBonus;
 
     @JsonFormat
-    private String annualStockValueBonus;
+    private BigDecimal annualStockValueBonus;
 
     @JsonFormat
     private String gender;
