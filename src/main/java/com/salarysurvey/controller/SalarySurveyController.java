@@ -48,6 +48,8 @@ public class SalarySurveyController {
         }
         Specification<SalarySurvey> spec = builder.build();
         var results = pagedResourcesAssembler.toModel(service.findAllWithFilter(spec, pageable), assembler);
+
+        // Paging and Hateoas
         MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(results);
         FilterProvider filters;
         if (StringUtils.hasLength(fields)) {

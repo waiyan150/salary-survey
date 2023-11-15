@@ -15,10 +15,12 @@ server:
 
 spring:
   logging:
-    level: info
+    level: debug
   jpa:
     hibernate:
       ddl-auto: none
+      format-sql: true
+    show-sql: true
   datasource:
     url: jdbc:mysql://localhost:3306/fullstack
     username: root

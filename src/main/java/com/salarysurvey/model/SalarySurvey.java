@@ -1,9 +1,8 @@
 package com.salarysurvey.model;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +20,8 @@ import java.time.LocalDateTime;
 public class SalarySurvey extends RepresentationModel<SalarySurvey> implements Serializable {
     @Id
     private Integer id;
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "YYYY-MM-DD HH:MM:ss")
     private LocalDateTime timestamp;
     private String employer;
     private String location;
