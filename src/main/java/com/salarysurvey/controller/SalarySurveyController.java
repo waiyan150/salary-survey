@@ -3,6 +3,7 @@ package com.salarysurvey.controller;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.querydsl.core.types.Predicate;
 import com.salarysurvey.model.SalarySurvey;
 import com.salarysurvey.model.SalarySurveyModelAssembler;
 import com.salarysurvey.model.SalarySurveySpecificationsBuilder;
@@ -10,6 +11,7 @@ import com.salarysurvey.service.SalarySurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.util.StringUtils;
@@ -37,19 +39,19 @@ public class SalarySurveyController {
     @GetMapping()
     public MappingJacksonValue search(
             @RequestParam(required = false, value = "fields") String fields,
-            @RequestParam(required = false, value = "search") String search,
+            @QuerydslPredicate(root = SalarySurvey.class) Predicate predicate,
             Pageable pageable) {
-        String[] fieldsArray;
-        SalarySurveySpecificationsBuilder builder = new SalarySurveySpecificationsBuilder();
-        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
-        Matcher matcher = pattern.matcher(search + ",");
-        while (matcher.find()) {
-            builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
-        }
-        Specification<SalarySurvey> spec = builder.build();
-        var results = pagedResourcesAssembler.toModel(service.findAllWithFilter(spec, pageable), assembler);
+//        SalarySurveySpecificationsBuilder builder = new SalarySurveySpecificationsBuilder();
+//        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
+//        Matcher matcher = pattern.matcher("search" + ",");
+//        while (matcher.find()) {
+//            builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
+//        }
+//        Specification<SalarySurvey> spec = builder.build();
+        var results = pagedResourcesAssembler.toModel(service.findAllWithFilter(predicate, pageable), assembler);
 
-        // Paging and Hateoas
+        // Paging, field filter and Hateoas
+        String[] fieldsArray;
         MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(results);
         FilterProvider filters;
         if (StringUtils.hasLength(fields)) {
@@ -61,9 +63,4 @@ public class SalarySurveyController {
         mappingJacksonValue.setFilters(filters);
         return mappingJacksonValue;
     }
-
-    /*@PutMapping("/{id}")
-    public SalarySurvey update(@PathVariable Integer id, @RequestBody SalarySurvey request){
-        return service.update(id, request);
-    }*/
 }
