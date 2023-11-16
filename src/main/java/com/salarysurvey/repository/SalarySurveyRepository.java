@@ -32,7 +32,5 @@ public interface SalarySurveyRepository extends JpaRepository<SalarySurvey, Inte
                 return Optional.of(path.goe(from));
             }
         });
-
-//        bindings.bind(root.id).first(NumberExpression::goe);
     }
 }
