@@ -4,6 +4,7 @@ import com.querydsl.core.types.dsl.StringPath;
 import com.salarysurvey.model.QSalarySurvey;
 import com.salarysurvey.model.SalarySurvey;
 import jakarta.annotation.Nonnull;
+import org.bitbucket.gt_tech.spring.data.querydsl.value.operators.ExpressionProviderFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -33,6 +34,6 @@ public interface SalarySurveyRepository extends JpaRepository<SalarySurvey, Inte
             }
         });
 
-//        bindings.bind(root.id).first(NumberExpression::goe);
+        bindings.bind(root.id).all((path, values) -> ExpressionProviderFactory.getPredicate(path, values));
     }
 }
