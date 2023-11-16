@@ -14,11 +14,19 @@ server:
     context-path: /salary-survey
 
 spring:
+  logging:
+    level: debug
   jpa:
     hibernate:
       ddl-auto: none
+      format-sql: true
+    show-sql: true
   datasource:
     url: jdbc:mysql://localhost:3306/fullstack
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  level:
+    org.springframework.web.filter.CommonsRequestLoggingFilter: debug
