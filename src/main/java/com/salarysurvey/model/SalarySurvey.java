@@ -2,10 +2,10 @@ package com.salarysurvey.model;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.querydsl.core.annotations.PropertyType;
 import com.querydsl.core.annotations.QueryEntity;
-import com.querydsl.core.annotations.QueryType;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,7 +27,6 @@ public class SalarySurvey extends RepresentationModel<SalarySurvey> implements S
     @JsonFormat
     private Integer id;
 
-//    @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime timestamp;
@@ -49,16 +47,16 @@ public class SalarySurvey extends RepresentationModel<SalarySurvey> implements S
     private String yearsOfExperience;
 
     @JsonFormat
-    private BigDecimal salary;
+    private String salary;
 
     @JsonFormat
-    private BigDecimal signingBonus;
+    private String signingBonus;
 
     @JsonFormat
-    private BigDecimal annualBonus;
+    private String annualBonus;
 
     @JsonFormat
-    private BigDecimal annualStockValueBonus;
+    private String annualStockValueBonus;
 
     @JsonFormat
     private String gender;
