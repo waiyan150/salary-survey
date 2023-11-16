@@ -7,6 +7,7 @@ import com.querydsl.core.types.Predicate;
 import com.salarysurvey.model.SalarySurvey;
 import com.salarysurvey.model.SalarySurveyModelAssembler;
 import com.salarysurvey.model.SalarySurveySpecificationsBuilder;
+import com.salarysurvey.repository.SalarySurveyRepository;
 import com.salarysurvey.service.SalarySurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +40,7 @@ public class SalarySurveyController {
     @GetMapping()
     public MappingJacksonValue search(
             @RequestParam(required = false, value = "fields") String fields,
-            @QuerydslPredicate(root = SalarySurvey.class) Predicate predicate,
+            @QuerydslPredicate(root = SalarySurvey.class, bindings = SalarySurveyRepository.class) Predicate predicate,
             Pageable pageable) {
 //        SalarySurveySpecificationsBuilder builder = new SalarySurveySpecificationsBuilder();
 //        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");

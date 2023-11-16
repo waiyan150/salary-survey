@@ -21,7 +21,10 @@ public interface SalarySurveyRepository extends JpaRepository<SalarySurvey, Inte
     @Override
     default void customize(QuerydslBindings bindings, @Nonnull QSalarySurvey root) {
         bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));
-        bindings.bind(root.salary).all(ExpressionProviderFactory::getPredicate);
-        bindings.bind(root.timestamp).all(ExpressionProviderFactory::getPredicate);
+//        bindings.bind(root.salary).all(ExpressionProviderFactory::getPredicate);
+//        bindings.bind(root.timestamp).all(ExpressionProviderFactory::getPredicate);
+        bindings.bind(root.salary).first((path, value) -> {
+            return path.eq(value);
+        });
     }
 }

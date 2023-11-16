@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
@@ -27,8 +28,9 @@ public class SalarySurvey extends RepresentationModel<SalarySurvey> implements S
     @JsonFormat
     private Integer id;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "YYYY-MM-DD HH:MM:ss")
+//    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime timestamp;
 
     @JsonFormat
