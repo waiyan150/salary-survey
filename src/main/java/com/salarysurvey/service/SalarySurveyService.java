@@ -3,11 +3,11 @@ package com.salarysurvey.service;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.querydsl.core.types.Predicate;
 import com.salarysurvey.model.SalarySurvey;
 import com.salarysurvey.model.SalarySurveyModelAssembler;
 import com.salarysurvey.repository.SalarySurveyRepository;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class SalarySurveyService {
         return repository.findById(id).orElse(null);
     }
 
-    public MappingJacksonValue findAll(final Predicate spec, final Pageable pageable, final String fields) {
+    public MappingJacksonValue findAll(final Specification<SalarySurvey> spec, final Pageable pageable, final String fields) {
         var entities = pagedResourcesAssembler.toModel(repository.findAll(spec, pageable), assembler);
 
         // Paging, field filter and Hateoas

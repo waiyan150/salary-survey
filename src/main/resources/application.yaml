@@ -1,10 +1,11 @@
 server:
   servlet:
     context-path: /salary-survey
-
+  port: 8081
+  
 spring:
   logging:
-    level: debug
+    level: trace
   jpa:
     hibernate:
       ddl-auto: none
@@ -13,8 +14,10 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/fullstack
     username: root
-    password:
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  main:
+    allow-bean-definition-overriding: true
 
 logging:
   level:
